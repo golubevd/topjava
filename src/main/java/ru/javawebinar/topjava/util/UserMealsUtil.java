@@ -55,7 +55,7 @@ public class UserMealsUtil {
         for (UserMeal userMeal: mealList)
         {
             if (TimeUtil.isBetween(userMeal.getDateTime().toLocalTime(),startTime,endTime)){
-                result.add(new UserMealWithExceed(userMeal.getDateTime(),userMeal.getDescription(),userMeal.getCalories(),caloriesPerDay > sumColoriesByDate.get(userMeal.getDateTime().toLocalDate())));
+                result.add(new UserMealWithExceed(userMeal.getDateTime(),userMeal.getDescription(),userMeal.getCalories(),(caloriesPerDay > sumColoriesByDate.get(userMeal.getDateTime().toLocalDate()))));
             }
         }
 
