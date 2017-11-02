@@ -28,7 +28,7 @@ public class UserMealsUtil {
     }
 
 
-   /* public static List<UserMealWithExceed> getFilteredWithExceeded(List<UserMeal> mealList, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
+    public static List<UserMealWithExceed> getFilteredWithExceeded(List<UserMeal> mealList, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
         Map<LocalDate, Integer> sumColoriesByDate = new HashMap<>();
         for (UserMeal meal : mealList) {
             LocalDate tmpDate = meal.getDateTime().toLocalDate();
@@ -40,14 +40,14 @@ public class UserMealsUtil {
 
         for (UserMeal userMeal : mealList) {
             if (TimeUtil.isBetween(userMeal.getDateTime().toLocalTime(), startTime, endTime)) {
-                result.add(new UserMealWithExceed(userMeal.getDateTime(), userMeal.getDescription(), userMeal.getCalories(), (caloriesPerDay > sumColoriesByDate.get(userMeal.getDateTime().toLocalDate()))));
+                result.add(new UserMealWithExceed(userMeal.getDateTime(), userMeal.getDescription(), userMeal.getCalories(), (caloriesPerDay < sumColoriesByDate.get(userMeal.getDateTime().toLocalDate()))));
             }
         }
 
         return result;
-    }*/
+    }
 
-    public static List<UserMealWithExceed> getFilteredWithExceeded(List<UserMeal> mealList, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
+   /* public static List<UserMealWithExceed> getFilteredWithExceeded(List<UserMeal> mealList, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
         return mealList.stream()
                 .collect(Collectors.groupingBy(meal -> meal.getDateTime().toLocalDate(), HashMap::new, Collectors.toList()))
                 .entrySet().stream().map(entry -> {
@@ -58,6 +58,6 @@ public class UserMealsUtil {
                 })
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
-    }
+    }*/
 
 }
