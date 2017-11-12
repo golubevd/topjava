@@ -10,12 +10,10 @@
             margin: 8px 0;
             padding: 0;
         }
-
         dt {
             display: inline-block;
             width: 170px;
         }
-
         dd {
             display: inline-block;
             margin-left: 8px;
@@ -25,7 +23,7 @@
 </head>
 <body>
 <section>
-    <h3><a href="index.html">Home</a></h3>
+    <h2><a href="index.html">Home</a></h2>
     <h2>${param.action == 'create' ? 'Create meal' : 'Edit meal'}</h2>
     <hr>
     <jsp:useBean id="meal" type="ru.javawebinar.topjava.model.Meal" scope="request"/>
@@ -44,7 +42,7 @@
             <dd><input type="number" value="${meal.calories}" name="calories"></dd>
         </dl>
         <button type="submit">Save</button>
-        <button onclick="window.history.back()" type="button">Cancel</button>
+        <button onclick="window.history.back()">Cancel</button>
     </form>
 </section>
 </body>
