@@ -23,7 +23,7 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         log.debug("forward to meals");
-        int userId = 2;
+        int userId = Integer.valueOf(req.getParameter("userId"));
         AuthorizedUser.setId(userId);
         resp.sendRedirect("meals");
     }
