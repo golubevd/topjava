@@ -19,8 +19,8 @@ public class AdminRestController extends AbstractUserController {
     }
 
     @Override
-    public User create(User user) {
-        return super.create(user);
+    public User save(User user) {
+        return super.save(user);
     }
 
     @Override
