@@ -21,20 +21,21 @@ public class InMemoryUserRepositoryImpl implements UserRepository {
     private Map<Integer, User> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(100);
 
-    public void init() {
+   /* public void init() {
         repository.clear();
         repository.put(UserTestData.USER_ID, USER);
         repository.put(UserTestData.ADMIN_ID, ADMIN);
     }
+    */
 
     @Override
     public User save(User user) {
         if (user.isNew()) {
             user.setId(counter.incrementAndGet());
+        }
             repository.put(user.getId(), user);
             return user;
-        }
-        return repository.computeIfPresent(user.getId(), (id, oldUser) -> user);
+
     }
 
     @Override

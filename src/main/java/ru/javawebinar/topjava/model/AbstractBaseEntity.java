@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 // http://stackoverflow.com/questions/594597/hibernate-annotations-which-is-better-field-or-property-access
 @Access(AccessType.FIELD)
-public abstract class AbstractBaseEntity {
+public class AbstractBaseEntity {
     public static final int START_SEQ = 100000;
 
     @Id
@@ -35,9 +35,8 @@ public abstract class AbstractBaseEntity {
 
     @Override
     public String toString() {
-        return String.format("Entity %s (%s)", getClass().getName(), id);
+        return String.format("Entity %s (%s)", getClass().getName(), getId());
     }
-
 
     @Override
     public boolean equals(Object o) {
