@@ -18,7 +18,7 @@ public abstract class AbstractBaseEntity implements Persistable<Integer> {
 
 //    PROPERTY access for id due to bug: https://hibernate.atlassian.net/browse/HHH-3718
 //    Fixed at last?
-//    @Access(value = AccessType.PROPERTY)
+   @Access(value = AccessType.PROPERTY)
     protected Integer id;
 
     protected AbstractBaseEntity() {

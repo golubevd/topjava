@@ -14,13 +14,19 @@ import static ru.javawebinar.topjava.util.ValidationUtil.checkNotFoundWithId;
 @Service
 public class MealServiceImpl implements MealService {
 
-    private final MealRepository repository;
 
     @Autowired
-    public MealServiceImpl(MealRepository repository) {
+    private MealRepository repository;
+
+    public void setRepository(MealRepository repository) {
         this.repository = repository;
     }
 
+   /* @Autowired
+    public MealServiceImpl(MealRepository repository) {
+        this.repository = repository;
+    }
+*/
     @Override
     public Meal get(int id, int userId) {
         return checkNotFoundWithId(repository.get(id, userId), id);
@@ -52,5 +58,13 @@ public class MealServiceImpl implements MealService {
     public Meal create(Meal meal, int userId) {
         Assert.notNull(meal, "meal must not be null");
         return repository.save(meal, userId);
+    }
+
+    public Meal getWithUser(int id,int userId){
+        return repository.getWithUser(id,userId);}
+
+    @Override
+    public List<Meal> getBetweenDateTimeWithUser(LocalDateTime startDate,LocalDateTime endDate,int userId) {
+        return repository.getBetweenWithUser(userId,startDate,endDate);
     }
 }
