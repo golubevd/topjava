@@ -60,11 +60,4 @@ public class MealServiceImpl implements MealService {
         return repository.save(meal, userId);
     }
 
-    public Meal getWithUser(int id,int userId){
-        return repository.getWithUser(id,userId);}
-
-    @Override
-    public List<Meal> getBetweenDateTimeWithUser(LocalDateTime startDate,LocalDateTime endDate,int userId) {
-        return repository.getBetweenWithUser(userId,startDate,endDate);
-    }
 }
