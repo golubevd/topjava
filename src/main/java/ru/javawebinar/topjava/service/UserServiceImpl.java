@@ -60,4 +60,10 @@ public class UserServiceImpl implements UserService {
         Assert.notNull(user, "user must not be null");
         checkNotFoundWithId(repository.save(user), user.getId());
     }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Override
+    public void evictCache() {
+
+    }
 }

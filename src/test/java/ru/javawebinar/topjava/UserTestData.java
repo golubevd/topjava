@@ -1,4 +1,4 @@
-package ru.javawebinar.topjava.repository.mock;
+package ru.javawebinar.topjava;
 
 import ru.javawebinar.topjava.model.Role;
 import ru.javawebinar.topjava.model.User;
