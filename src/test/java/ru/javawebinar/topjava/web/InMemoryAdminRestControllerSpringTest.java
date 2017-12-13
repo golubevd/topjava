@@ -16,6 +16,7 @@ import ru.javawebinar.topjava.web.user.AdminRestController;
 import java.util.Collection;
 
 import static ru.javawebinar.topjava.UserTestData.ADMIN;
+import static ru.javawebinar.topjava.UserTestData.USER;
 
 @ContextConfiguration({"classpath:spring/spring-app.xml", "classpath:spring/mock.xml"})
 @RunWith(SpringRunner.class)
@@ -29,7 +30,9 @@ public class InMemoryAdminRestControllerSpringTest {
 
     @Before
     public void setUp() throws Exception {
-        repository.init();
+        repository.getAll().forEach(u->repository.delete(u.getId()));
+        repository.save(USER);
+        repository.save(ADMIN);
     }
 
     @Test

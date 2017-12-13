@@ -160,6 +160,13 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
@@ -208,6 +215,12 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
+        <exclusions>
+            <exclusion>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+            </exclusion>
+        </exclusions>
         </dependency>
 
         <dependency>
@@ -235,12 +248,12 @@
             <artifactId>spring-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
+       <!-- <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>3.8.0</version>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 

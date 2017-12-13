@@ -19,22 +19,15 @@ import static ru.javawebinar.topjava.UserTestData.USER;
 public class InMemoryUserRepositoryImpl implements UserRepository {
 
     private Map<Integer, User> repository = new ConcurrentHashMap<>();
-    private AtomicInteger counter = new AtomicInteger(100);
-
-    public void init() {
-        repository.clear();
-        repository.put(UserTestData.USER_ID, USER);
-        repository.put(UserTestData.ADMIN_ID, ADMIN);
-    }
+    private AtomicInteger counter = new AtomicInteger(0);
 
     @Override
     public User save(User user) {
         if (user.isNew()) {
             user.setId(counter.incrementAndGet());
-            repository.put(user.getId(), user);
-            return user;
         }
-        return repository.computeIfPresent(user.getId(), (id, oldUser) -> user);
+        repository.put(user.getId(), user);
+        return user;
     }
 
     @Override
