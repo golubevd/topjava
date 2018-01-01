@@ -1,3 +1,6 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bf6b08734592432987ab6a68563f9db9)](https://www.codacy.com/app/golubevd/topjava?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=golubevd/topjava&amp;utm_campaign=Badge_Grade) [![Dependency Status](https://www.versioneye.com/user/projects/5a19f3290fb24f006ccc98e8/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5a19f3290fb24f006ccc98e8) [![Build Status](https://travis-ci.org/golubevd/topjava.svg?branch=master)](https://travis-ci.org/golubevd/topjava)
+
+
 Java Enterprise Online Project 
 ===============================
 Разработка полнофункционального Spring/JPA Enterprise приложения c авторизацией и правами доступа на основе ролей с использованием наиболее популярных инструментов и технологий Java: Maven, Spring MVC, Security, JPA(Hibernate), REST(Jackson), Bootstrap (css,js), datatables, jQuery + plugins, Java 8 Stream and Time API и хранением в базах данных Postgresql и HSQLDB.

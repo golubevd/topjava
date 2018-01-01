@@ -21,4 +21,8 @@ public interface UserService {
     List<User> getAll();
 
     User getWithMeals(int id);
+
+    void evictCache();
+
+    void changeEnabled(int id, boolean enabled);
 }
