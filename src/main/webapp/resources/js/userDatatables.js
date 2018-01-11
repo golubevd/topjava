@@ -1,5 +1,7 @@
 var ajaxUrl = "ajax/admin/users/";
 var datatableApi;
+var addTitle="user.add";
+var editTitle="user.edit";
 
 function updateTable() {
     $.get(ajaxUrl, updateTableByData);
@@ -7,18 +9,20 @@ function updateTable() {
 
 function enable(chkbox, id) {
     var enabled = chkbox.is(":checked");
-//  https://stackoverflow.com/a/22213543/548473
     $.ajax({
         url: ajaxUrl + id,
         type: "POST",
-        data: "enabled=" + enabled
-    }).done(function () {
-        chkbox.closest("tr").toggleClass("disabled");
-        successNoty(enabled ? "common.enabled" : "common.disabled");
-    }).fail(function () {
-        $(chkbox).prop("checked", !enabled);
+        data: "enabled=" + enabled,
+        success: function () {
+            chkbox.closest("tr").toggleClass("disabled");
+            successNoty(enabled ? "common.enabled" : "common.disabled");
+        },
+        error: function () {
+            $(chkbox).prop("checked", !enabled);
+        }
     });
 }
+
 
 // $(document).ready(function () {
 $(function () {

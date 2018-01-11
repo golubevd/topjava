@@ -75,6 +75,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         repository.save(UserUtil.updateFromTo(user, userTo));
     }
 
+    @CacheEvict(value = "users", allEntries = true)
+    @Transactional
+    @Override
+    public void evictCache(){
+        // only for evict cache
+    }
+
+
+
 
     @CacheEvict(value = "users", allEntries = true)
     @Override

@@ -3,7 +3,7 @@ var form;
 function makeEditable() {
     form = $('#detailsForm');
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
-        failNoty(jqXHR);
+        failNoty(event, jqXHR, options, jsExc);
     });
 
     // solve problem with cache in IE: https://stackoverflow.com/a/4303862/548473
@@ -11,15 +11,17 @@ function makeEditable() {
 }
 
 function add() {
-    $("#modalTitle").html(i18n["addTitle"]);
+    $("#modalTitle").html(i18n[addTitle]);
     form.find(":input").val("");
     $("#editRow").modal();
 }
 
 function updateRow(id) {
-    $("#modalTitle").html(i18n["editTitle"]);
+    $("#modalTitle").html(i18n[editTitle]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
+            if(key==='dateTime')
+                value=value.replace("T"," ").substr(0,16);
             form.find("input[name='" + key + "']").val(value);
         });
         $('#editRow').modal();
@@ -29,10 +31,11 @@ function updateRow(id) {
 function deleteRow(id) {
     $.ajax({
         url: ajaxUrl + id,
-        type: "DELETE"
-    }).done(function () {
-        updateTable();
-        successNoty("common.deleted");
+        type: "DELETE",
+        success: function () {
+            updateTable();
+            successNoty("common.deleted");
+        }
     });
 }
 
@@ -44,11 +47,12 @@ function save() {
     $.ajax({
         type: "POST",
         url: ajaxUrl,
-        data: form.serialize()
-    }).done(function () {
-        $("#editRow").modal("hide");
-        updateTable();
-        successNoty("common.saved");
+        data: form.serialize(),
+        success: function () {
+            $("#editRow").modal("hide");
+            updateTable();
+            successNoty("common.saved");
+        }
     });
 }
 
@@ -71,7 +75,7 @@ function successNoty(key) {
     }).show();
 }
 
-function failNoty(jqXHR) {
+function failNoty(event, jqXHR, options, jsExc) {
     closeNoty();
     failedNote = new Noty({
         text: "<span class='glyphicon glyphicon-exclamation-sign'></span> &nbsp;" + i18n["common.errorStatus"] + ": " + jqXHR.status + (jqXHR.responseJSON ? "<br>" + jqXHR.responseJSON : ""),
@@ -81,14 +85,14 @@ function failNoty(jqXHR) {
 }
 
 function renderEditBtn(data, type, row) {
-    if (type === "display") {
+    if (type == "display") {
         return "<a onclick='updateRow(" + row.id + ");'>" +
             "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>";
     }
 }
 
 function renderDeleteBtn(data, type, row) {
-    if (type === "display") {
+    if (type == "display") {
         return "<a onclick='deleteRow(" + row.id + ");'>" +
             "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
     }
