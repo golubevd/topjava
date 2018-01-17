@@ -74,30 +74,35 @@ $(function () {
     $('#startDate').datetimepicker(
         {
             timepicker:false,
-            format:'Y-m-d'
+            formatDate:'Y-m-d',
+            lang:'ru'
         }
     );
     $('#endDate').datetimepicker(
         {
             timepicker:false,
-            format:'Y-m-d'
+            formatDate:'Y-m-d',
+            lang:'ru'
         }
     );
     $('#startTime').datetimepicker(
         {
             datepicker:false,
-            format:'H:i'
+            format:'H:i',
+            lang:'ru'
         }
     );
     $('#endTime').datetimepicker(
         {
             datepicker:false,
-            format:'H:i'
+            format:'H:i',
+            lang:'ru'
         }
     );
     $('#dateTime').datetimepicker(
         {
-            format:'Y-m-d H:i'
+            format:'Y-m-d\\TH:i:s',
+            lang:'ru'
         }
     );
 
