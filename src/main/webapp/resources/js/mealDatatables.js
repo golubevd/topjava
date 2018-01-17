@@ -67,7 +67,15 @@ $(function () {
                 $(row).addClass("normal");
             }
         },
-        "initComplete": makeEditable
+        "initComplete":function () {
+            $('#filter').submit(function () {
+                updateTable();
+                return false;
+
+            });
+            makeEditable();
+            
+        }
     });
 
 
@@ -75,34 +83,31 @@ $(function () {
         {
             timepicker:false,
             formatDate:'Y-m-d',
-            lang:'ru'
+            format:'Y-m-d'
         }
     );
     $('#endDate').datetimepicker(
         {
             timepicker:false,
             formatDate:'Y-m-d',
-            lang:'ru'
+            format:'Y-m-d'
         }
     );
     $('#startTime').datetimepicker(
         {
             datepicker:false,
-            format:'H:i',
-            lang:'ru'
+            format:'H:i'
         }
     );
     $('#endTime').datetimepicker(
         {
             datepicker:false,
-            format:'H:i',
-            lang:'ru'
+            format:'H:i'
         }
     );
     $('#dateTime').datetimepicker(
         {
-            format:'Y-m-d\\TH:i:s',
-            lang:'ru'
+            format:'Y-m-d\\TH:i:s'
         }
     );
 
