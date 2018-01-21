@@ -1,30 +1,24 @@
 package ru.javawebinar.topjava.to;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
-public class MealWithExceed {
-    private  Integer id;
+public class MealWithExceed extends BaseTo {
 
-    private  LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
 
-    private  String description;
+    private final String description;
 
-    private  int calories;
+    private final int calories;
 
-    private  boolean exceed;
-
-    public MealWithExceed(){}
+    private final boolean exceed;
 
     public MealWithExceed(Integer id, LocalDateTime dateTime, String description, int calories, boolean exceed) {
-        this.id = id;
+        super(id);
         this.dateTime = dateTime;
         this.description = description;
         this.calories = calories;
         this.exceed = exceed;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public LocalDateTime getDateTime() {
@@ -41,6 +35,23 @@ public class MealWithExceed {
 
     public boolean isExceed() {
         return exceed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MealWithExceed that = (MealWithExceed) o;
+        return calories == that.calories &&
+                exceed == that.exceed &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(dateTime, that.dateTime) &&
+                Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, dateTime, description, calories, exceed);
     }
 
     @Override

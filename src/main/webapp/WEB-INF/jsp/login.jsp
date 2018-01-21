@@ -49,7 +49,7 @@
         </p>
         <br/>
         <p>Стек технологий: <a href="http://projects.spring.io/spring-security/">Spring Security</a>,
-            <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html">Spring MVC</a>,
+            <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html">Spring MVC</a>,
             <a href="http://projects.spring.io/spring-data-jpa/">Spring Data JPA</a>,
             <a href="http://spring.io/blog/2014/05/07/preview-spring-security-test-method-security">Spring Security
                 Test</a>,
