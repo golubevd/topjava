@@ -18,7 +18,10 @@
                         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                     </button>
                 </sec:authorize>
+
             </form:form>
+
         </div>
+
     </div>
 </div>
