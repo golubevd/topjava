@@ -36,14 +36,12 @@ public class AdminAjaxController extends AbstractUserController {
     }
 
     @PostMapping
-    public  void createOrUpdate(@Valid UserTo userTo) {
-
+    public void createOrUpdate(@Valid UserTo userTo) {
         if (userTo.isNew()) {
             super.create(UserUtil.createNewFromTo(userTo));
         } else {
             super.update(userTo, userTo.getId());
         }
-
     }
 
     @Override
