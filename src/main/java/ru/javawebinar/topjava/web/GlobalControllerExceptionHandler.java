@@ -21,15 +21,14 @@ public class GlobalControllerExceptionHandler {
     private MessageUtil messageUtil;
 
     @ExceptionHandler(ApplicationException.class)
-    public ModelAndView applicationErrorHandler(HttpServletRequest req, ApplicationException appEx)throws Exception{
-        return getView(req,appEx,appEx.getType(),messageUtil.getMessage(appEx));
+    public ModelAndView applicationErrorHandler(HttpServletRequest req, ApplicationException appEx) throws Exception {
+        return getView(req, appEx, appEx.getType(), messageUtil.getMessage(appEx));
     }
 
     @ExceptionHandler(Exception.class)
-    public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception{
-        return getView(req,e, ErrorType.APP_ERROR,null);
+    public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
+        return getView(req, e, ErrorType.APP_ERROR, null);
     }
-
 
     public ModelAndView getView(HttpServletRequest req, Exception e, ErrorType type, String msg) throws Exception {
         Throwable rootCause = ValidationUtil.getRootCause(e);

@@ -45,7 +45,7 @@ public class RootController extends AbstractUserController {
 
     @GetMapping("/profile")
     public String profile(ModelMap model, @AuthenticationPrincipal AuthorizedUser authorizedUser) {
-        model.addAttribute("userTO", authorizedUser.getUserTo());
+        model.addAttribute("userTo", authorizedUser.getUserTo());
         return "profile";
     }
 
@@ -53,16 +53,16 @@ public class RootController extends AbstractUserController {
     public String updateProfile(@Valid UserTo userTo, BindingResult result, SessionStatus status, @AuthenticationPrincipal AuthorizedUser authorizedUser) {
         if (result.hasErrors()) {
             return "profile";
-        } try {
-            super.update(userTo, AuthorizedUser.id());
-            authorizedUser.get().update(userTo);
+        }
+        try {
+            super.update(userTo, authorizedUser.getId());
+            authorizedUser.update(userTo);
             status.setComplete();
             return "redirect:meals";
-        }catch (DataIntegrityViolationException ex){
-            result.rejectValue("email",EXCEPTION_DUPLICATE_EMAIL);
+        } catch (DataIntegrityViolationException ex) {
+            result.rejectValue("email", EXCEPTION_DUPLICATE_EMAIL);
             return "profile";
         }
-
     }
 
     @GetMapping("/register")
@@ -77,13 +77,14 @@ public class RootController extends AbstractUserController {
         if (result.hasErrors()) {
             model.addAttribute("register", true);
             return "profile";
-        } try {
+        }
+        try {
             super.create(UserUtil.createNewFromTo(userTo));
             status.setComplete();
             return "redirect:login?message=app.registered&username=" + userTo.getEmail();
-        }catch (DataIntegrityViolationException ex){
-            result.rejectValue("email",EXCEPTION_DUPLICATE_EMAIL);
-            model.addAttribute("register",true);
+        } catch (DataIntegrityViolationException ex) {
+            result.rejectValue("email", EXCEPTION_DUPLICATE_EMAIL);
+            model.addAttribute("register", true);
             return "profile";
         }
     }
